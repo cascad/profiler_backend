@@ -3,3 +3,6 @@ Dockerfile*
 docker-compose.*
 .gitignore
 README
+pkg/
+bin/
+src/
