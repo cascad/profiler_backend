@@ -1,14 +1,14 @@
 package main
 
 import (
-	"github.com/gorilla/mux"
-	"github.com/gorilla/handlers"
-	"net/http"
-	"encoding/json"
-	"fmt"
-	"log"
 	. "./profiler"
 	"compress/gzip"
+	"encoding/json"
+	"fmt"
+	"github.com/gorilla/handlers"
+	"github.com/gorilla/mux"
+	"log"
+	"net/http"
 	"time"
 )
 
@@ -55,7 +55,7 @@ func main() {
 	//	http.ServeFile(w, r, "./static/index.html")
 	//})
 
-	host := "192.168.2.102:8002"
+	host := config.Hostname
 	log.Println(fmt.Sprintf("[x] started server on address %s", host))
 	if err := http.ListenAndServe(host, handlers.CompressHandlerLevel(r, gzip.BestCompression)); err != nil {
 		log.Fatal(err)
