@@ -58,6 +58,7 @@ func main() {
 	host := config.Hostname
 	log.Println(fmt.Sprintf("[x] started server on address %s", host))
 	if err := http.ListenAndServe(host, handlers.CompressHandlerLevel(r, gzip.BestCompression)); err != nil {
+		dbh.Session.Close()
 		log.Fatal(err)
 	}
 

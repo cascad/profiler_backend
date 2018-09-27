@@ -1,16 +1,17 @@
 package profiler
 
 import (
-	"log"
+	"fmt"
 	"github.com/globalsign/mgo"
 	"github.com/globalsign/mgo/bson"
+	"log"
 	"time"
-	"fmt"
 )
 
 type DBHelper struct {
 	Server   string
 	Database string
+	Session  *mgo.Session
 }
 
 var db *mgo.Database
@@ -25,6 +26,7 @@ func (m *DBHelper) Connect() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	m.Session = session
 	fmt.Println("ping db:", session.Ping() == nil)
 	db = session.DB(m.Database)
 }
